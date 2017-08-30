@@ -36,7 +36,10 @@ class UserForm extends Component {
   isValid = () => {
     const { name, address, tel } = this.state;
 
-    return name.length <= 100 && address.trim(" ").split(" ").length <= 1 && tel.length === 18;
+    return name.length <= 100 &&
+           address.trim(" ").split(" ").length <= 1 &&
+           tel.length === 18 && 
+           !tel.includes("_")
   }
 
   onInsert = (e) => {
