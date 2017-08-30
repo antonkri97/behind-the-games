@@ -1,9 +1,10 @@
 import { INSERT_USER, UPDATE_USER, REMOVE_USER, SELECT_USER } from '../actions';
+const uuidv4 = require('uuid/v4')
 
 const initialState = {
   users: [
     {
-      id: 1,
+      id: uuidv4(),
       name: "Anton",
       birth: {
         year: "1997",
@@ -15,7 +16,7 @@ const initialState = {
       tel: "+7 (921) 863-91-58"
     },
     {
-      id: 2,
+      id: uuidv4(),
       name: "Yana",
       birth: {
         year: "1997",
@@ -34,11 +35,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case INSERT_USER:
       return Object.assign({}, state, {
-        users: [...state.users,
-          {
-            a: action.user
-          }
-        ]
+        users: [...state.users, action.user ]
       })
     case UPDATE_USER:
       return state;

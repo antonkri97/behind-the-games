@@ -6,7 +6,7 @@ class Data extends Component {
   static propTypes = {
     users: PropTypes.arrayOf(
       PropTypes.objectOf({
-        id: PropTypes.number,
+        id: PropTypes.string,
         name: PropTypes.string,
         birth: PropTypes.objectOf({
           year: PropTypes.string,

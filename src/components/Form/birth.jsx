@@ -9,7 +9,7 @@ class Birth extends Component {
   Years = () => {
     let years = [];
 
-    for (let y = 1910; y <= 2007; y++) {
+    for (let y = 2001; y >= 1910; y--) {
       years.push(<option key={y} value={y}>{y}</option>);
     }
 
