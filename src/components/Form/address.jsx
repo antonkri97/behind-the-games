@@ -11,7 +11,8 @@ class Address extends Component {
   }
 
   static propTypes = {
-    onChangeAddress: PropTypes.func.isRequired
+    onChangeAddress: PropTypes.func.isRequired,
+    address: PropTypes.string.isRequired
   }
 
   onChange = (e) => {
@@ -30,7 +31,7 @@ class Address extends Component {
     return (
       <div className="pure-control-group">
         <label>Адрес</label>
-        <input type="text" onChange={this.onChange}/>
+        <input value={this.props.address} type="text" onChange={this.onChange}/>
         <span style={{ display: this.state.isValid ? 'none': 'inline'}}>
           Адрес должен быть в одну строку
         </span>

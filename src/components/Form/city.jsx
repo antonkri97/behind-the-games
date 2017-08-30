@@ -23,7 +23,7 @@ class City extends Component {
     return (
       <div className="pure-control-group">
         <label>Город</label>
-        <input type="text" onChange={this.props.onChangeCity}/>
+        <input value={this.props.city} type="text" onChange={this.props.onChangeCity}/>
         <span style={{ display: this.state.isValid ? 'none': 'inline'}}>
           ФИО должно быть менее 100 символов
         </span>

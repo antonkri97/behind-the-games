@@ -2,10 +2,10 @@ import React from 'react';
 import InputMask from 'react-input-mask';
 import PropTypes from 'prop-types';
 
-const Tel = ({ onTelChange }) => (
+const Tel = ({ onTelChange, tel }) => (
   <div className="pure-control-group">
     <label>Телефон</label>
-    <InputMask mask="+7 (999) 999-99-99" onChange={onTelChange}/>
+    <InputMask value={tel} mask="+7 (999) 999-99-99" onChange={onTelChange}/>
   </div>
 );
 

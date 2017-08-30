@@ -21,13 +21,28 @@ class UserForm extends Component {
       },
       address: '',
       city: '',
-      tel: 0
+      tel: ''
     }
   }
 
   static propTypes = {
+    user: PropTypes.object,
     onUserInsert: PropTypes.func,
     onUserUpdate: PropTypes.func
+  }
+
+  static defaultProps = {
+    user: {
+      name: '',
+      birth: {
+        year: "2001",
+        month: "1",
+        day: "1"
+      },
+      address: '',
+      city: '',
+      tel: 0
+    }
   }
 
   isValid = () => {
@@ -43,6 +58,12 @@ class UserForm extends Component {
     e.preventDefault();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user !== undefined) {
+      this.setState(nextProps.user )
+    }
+  }
+
   render() {
     const onChangeBirth = (e) => {
       const name = e.target.name;
@@ -56,11 +77,11 @@ class UserForm extends Component {
     return (
       <form className="pure-form pure-form-aligned">
         <fieldset>
-          <Name onChangeName={(name) => this.setState({name})} />
-          <Birth onChangeBirth={onChangeBirth}/>
-          <Address onChangeAddress={(address) => this.setState({address})} />
-          <City onChangeCity={(e) => this.setState({city: e.target.value})} />
-          <Tel onTelChange={(e) => this.setState({ tel: e.target.value})} />
+          <Name name={this.state.name} onChangeName={(name) => this.setState({name})} />
+          <Birth birth={this.state.birth} onChangeBirth={onChangeBirth}/>
+          <Address address={this.state.address} onChangeAddress={(address) => this.setState({address})} />
+          <City city={this.state.city} onChangeCity={(e) => this.setState({city: e.target.value})} />
+          <Tel tel={this.state.tel} onTelChange={(e) => this.setState({ tel: e.target.value})} />
           <div className="pure-controls">
             <button className="pure-button pure-button-primary" onClick={this.onInsert}>Добавить</button>
           </div>

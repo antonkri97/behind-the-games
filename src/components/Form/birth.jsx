@@ -4,6 +4,19 @@ import PropTypes from 'prop-types';
 class Birth extends Component {
   static propTypes = {
     onChangeBirth: PropTypes.func,
+    birth: PropTypes.objectOf({
+      year: PropTypes.string,
+      month: PropTypes.string,
+      day: PropTypes.string
+    })
+  }
+
+  static defaultProps = {
+    birth: {
+      year: "2001",
+      month: "1",
+      day: "1"
+    }
   }
 
   Years = () => {
@@ -14,7 +27,7 @@ class Birth extends Component {
     }
 
     return (
-      <select className="user-element" name="year" className="birth" onChange={this.props.onChangeBirth}>
+      <select value={this.props.birth.year} className="user-element" name="year" className="birth" onChange={this.props.onChangeBirth}>
         {years}
       </select>
     );
@@ -28,7 +41,7 @@ class Birth extends Component {
     }
 
     return (
-      <select className="user-element" name="month" className="birth" onChange={this.props.onChangeBirth}>
+      <select value={this.props.birth.month} className="user-element" name="month" className="birth" onChange={this.props.onChangeBirth}>
         {months}
       </select>
     );
@@ -42,7 +55,7 @@ class Birth extends Component {
     }
 
     return (
-      <select className="user-element" name="day" className="birth" onChange={this.props.onChangeBirth}>
+      <select value={this.props.birth.day} className="user-element" name="day" className="birth" onChange={this.props.onChangeBirth}>
         {days}
       </select>  
     );

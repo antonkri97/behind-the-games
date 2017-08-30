@@ -26,14 +26,14 @@ class Name extends Component {
     }
 
     this.setState({ isValid: true });
-    this.props.onChangeName(e.target.value);    
+    this.props.onChangeName(e.target.value);   
   }
 
   render() {
     return (
       <div className="pure-control-group">
         <label>ФИО пользователя</label>
-        <input type="text" onChange={this.onChange}/>
+        <input value={this.props.name} type="text" onChange={this.onChange}/>
         <span style={{ display: this.state.isValid ? 'none': 'inline'}}>
           ФИО должно быть менее 100 символов
         </span>
