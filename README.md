@@ -14,7 +14,7 @@
 
 Запуск:
 
-git clone https://github.com/antonkri97/behind-the-games
-cd behind-the-games
-yarn install
-yarn start
+* git clone https://github.com/antonkri97/behind-the-games
+* cd behind-the-games
+* yarn install
+* yarn start
