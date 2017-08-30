@@ -4,6 +4,7 @@ import Name from './name';
 import Address from './address';
 import City from './city';
 import Tel from './tel';
+import Action from './action';
 import PropTypes from 'prop-types';
 
 const uuidv4 = require('uuid/v4')
@@ -28,21 +29,8 @@ class UserForm extends Component {
   static propTypes = {
     user: PropTypes.object,
     onUserInsert: PropTypes.func,
-    onUserUpdate: PropTypes.func
-  }
-
-  static defaultProps = {
-    user: {
-      name: '',
-      birth: {
-        year: "2001",
-        month: "1",
-        day: "1"
-      },
-      address: '',
-      city: '',
-      tel: 0
-    }
+    onUserUpdate: PropTypes.func,
+    onUserSelect: PropTypes.func
   }
 
   isValid = () => {
@@ -60,7 +48,19 @@ class UserForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== undefined) {
-      this.setState(nextProps.user )
+      this.setState(Object.assign({}, nextProps.user))
+    } else {
+      this.setState({
+        name: '',
+        birth: {
+          year: "2001",
+          month: "1",
+          day: "1"
+        },
+        address: '',
+        city: '',
+        tel: ''
+      })
     }
   }
 
@@ -82,9 +82,13 @@ class UserForm extends Component {
           <Address address={this.state.address} onChangeAddress={(address) => this.setState({address})} />
           <City city={this.state.city} onChangeCity={(e) => this.setState({city: e.target.value})} />
           <Tel tel={this.state.tel} onTelChange={(e) => this.setState({ tel: e.target.value})} />
-          <div className="pure-controls">
-            <button className="pure-button pure-button-primary" onClick={this.onInsert}>Добавить</button>
-          </div>
+          <Action 
+            isUpdate={this.props.user !== undefined}
+            isValid={this.isValid()}
+            onUpdate={() => this.props.onUserUpdate(this.state)}
+            onInsert={() => this.props.onUserInsert(Object.assign(this.state, { id: uuidv4()}))}
+            onSelect={() => this.props.onUserSelect()} 
+          />
         </fieldset>
       </form>
   );

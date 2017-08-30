@@ -38,7 +38,9 @@ export default (state = initialState, action) => {
         users: [...state.users, action.user ]
       })
     case UPDATE_USER:
-      return state;
+      return Object.assign({}, state, {
+        users: state.users.map(u => u.id === action.user.id ? action.user : u)
+      });
     case REMOVE_USER: 
       return Object.assign({}, state, {
         users: state.users.filter(u => u.id !== action.id)
