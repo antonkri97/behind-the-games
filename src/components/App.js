@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Form from './Form';
+import Data from '../containers/data';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <Form />
+        <Data />
       </div>
     );
   }

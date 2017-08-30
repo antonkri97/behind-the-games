@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Birth from './birth';
 import Name from './name';
 import Address from './address';
+import City from './city';
 import Tel from './tel';
+import PropTypes from 'prop-types';
 
 class UserForm extends Component {
   constructor(props) {
@@ -16,8 +18,14 @@ class UserForm extends Component {
         day: 1
       },
       address: '',
+      city: '',
       tel: 0
     }
+  }
+
+  static propTypes = {
+    onUserInsert: PropTypes.func,
+    onUserUpdate: PropTypes.func
   }
 
   render() {
@@ -36,6 +44,7 @@ class UserForm extends Component {
           <Name onChangeName={(name) => this.setState({name})} />
           <Birth onChangeBirth={onChangeBirth}/>
           <Address onChangeAddress={(address) => this.setState({address})} />
+          <City onChangeCity={(e) => this.setState({city: e.target.value})} />
           <Tel onTelChange={(e) => this.setState({ tel: e.target.value})} />
           <div className="pure-controls">
             <button className="pure-button pure-button-primary">Добавить</button>
