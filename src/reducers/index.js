@@ -28,7 +28,7 @@ const initialState = {
       tel: "+7 (921) 222-33-44"
     }
   ],
-  selectedUser: -1
+  selectedUser: '_'
 };
 
 export default (state = initialState, action) => {

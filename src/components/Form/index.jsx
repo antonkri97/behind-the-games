@@ -7,8 +7,6 @@ import Tel from './tel';
 import Action from './action';
 import PropTypes from 'prop-types';
 
-const uuidv4 = require('uuid/v4')
-
 class UserForm extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +27,7 @@ class UserForm extends Component {
   static propTypes = {
     user: PropTypes.object,
     onUserInsert: PropTypes.func,
+    selectedId: PropTypes.string,
     onUserUpdate: PropTypes.func,
     onUserSelect: PropTypes.func
   }
@@ -44,15 +43,17 @@ class UserForm extends Component {
 
   onInsert = (e) => {
     if (this.isValid()) {
-      this.props.onUserInsert(Object.assign(this.state, {id: uuidv4()}));
+      this.props.onUserInsert(this.state);
     }
     e.preventDefault();
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.selectedId);
     if (nextProps.user !== undefined) {
-      this.setState(Object.assign({}, nextProps.user))
+      this.setState(nextProps.user)
     } else {
+      console.log('user is undefined!');
       this.setState({
         name: '',
         birth: {
@@ -89,7 +90,7 @@ class UserForm extends Component {
             isUpdate={this.props.user !== undefined}
             isValid={this.isValid()}
             onUpdate={() => this.props.onUserUpdate(this.state)}
-            onInsert={() => this.props.onUserInsert(Object.assign(this.state, { id: uuidv4()}))}
+            onInsert={() => this.props.onUserInsert(this.state)}
             onSelect={() => this.props.onUserSelect()} 
           />
         </fieldset>
